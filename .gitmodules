@@ -1,0 +1,6 @@
+[submodule "psblas3"]
+	path = psblas3
+	url = https://github.com/sfilippone/psblas3
+[submodule "psblas3-ext"]
+	path = psblas3-ext
+	url = https://github.com/sfilippone/psblas3-ext
