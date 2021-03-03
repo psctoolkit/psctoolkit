@@ -4,3 +4,7 @@
 [submodule "psblas3-ext"]
 	path = psblas3-ext
 	url = https://github.com/sfilippone/psblas3-ext
+[submodule "sundials"]
+	path = sundials
+	url = git@github.com:Cirdans-Home/sundials.git
+	branch = psblasinterface
