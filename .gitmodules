@@ -8,3 +8,6 @@
 	path = sundials
 	url = git@github.com:Cirdans-Home/sundials.git
 	branch = psblasinterface
+[submodule "spgpu"]
+	path = spgpu
+	url = https://github.com/davidebarbieri/spgpu
