@@ -6,7 +6,7 @@ This repository contains the various libraries that make up the Parallel Sparse 
 - PSBLAS-EXT
 - AMG4PSBLAS
 
-All the relevant information can be found at: [psctoolkit.github.io](https://psctoolkit.github.io/).
+All the relevant information can be found at: [psctoolkit.github.io](https://psctoolkit.github.io/). Moreover, it contains a version of the SUNDIALS library interfacing the PSCToolkit routines for linear algebra (distributed matrices and vectors), linear solvers and preconditioners.
 
 ## How to get
 
@@ -22,7 +22,18 @@ To keep the development version updated with the changes in the individual repos
 ```bash
 git submodule update --init --recursive
 ```
-Otherwise, the easiest way is to download the latest **stable release**. This contains all versions of the packages that can be compiled together. 
+or to execute ```git pull``` inside each of the folders to synchronize to the latest version. 
+
+**Warning:** the various submodules point to mutually compatible versions of the library. Branch switching and pull operations could damage compatibility, especially moving into development branches. The easiest way is to download the latest **stable release**. This contains all versions of the packages that can be compiled together. 
+
+## How to install
+
+The possible installation order are:
+
+1) PSBLAS -> PSBLAS-EXT -> AMG4PSBLAS -> SUNDIALS
+2) PSBLAS -> AMG4PSBLAS
+
+Each of the libraries contains its own installation instructions. See information on [https://psctoolkit.github.io/libraries/](https://psctoolkit.github.io/libraries/). 
 
 ## How to cite
 
