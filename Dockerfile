@@ -18,7 +18,7 @@ RUN tar -xvf metis-5.1.0.tar.gz
 RUN sed -i 's/#define IDXTYPEWIDTH 32/#define IDXTYPEWIDTH 64/g' metis-5.1.0/include/metis.h
 RUN cd metis-5.1.0 && make config shared=1 cc=gcc && make install
 
-RUN git clone git@github.com:psctoolkit/psctoolkit.git
+RUN git clone https://github.com/psctoolkit/psctoolkit.git
 
 # Install PSBLAS from the repository
 RUN cd psctoolkit/psblas3 && ./configure \
