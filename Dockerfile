@@ -18,9 +18,10 @@ RUN tar -xvf metis-5.1.0.tar.gz
 RUN sed -i 's/#define IDXTYPEWIDTH 32/#define IDXTYPEWIDTH 64/g' metis-5.1.0/include/metis.h
 RUN cd metis-5.1.0 && make config shared=1 cc=gcc && make install
 
-RUN git clone https://github.com/psctoolkit/psctoolkit.git
+RUN git clone https://github.com/psctoolkit/psctoolkit.git && cd psctoolkit && git submodule update --init --recursive && git pull
 
 # Install PSBLAS from the repository
+RUN cd psctoolkit/psblas3 && ls
 RUN cd psctoolkit/psblas3 && ./configure \
                       --prefix=/usr/local/psctoolkit \
                       --with-metisdir=/usr/lib/x86_64-linux-gnu/ \
@@ -33,11 +34,13 @@ RUN cd psctoolkit/psblas3 && ./configure \
                       --with-amdincdir=/usr/include/suitesparse/ && make && make install
 
 # Install PSBLAS-EXT from the repository
+RUN cd psctoolkit/psblas3-ext && ls
 RUN cd psctoolkit/psblas3-ext && ./configure \
                     --with-psblas=/usr/local/psctoolkit \
                     --prefix=/usr/local/psctoolkit && make && make install
 
 # Install AMG4PSBLAS
+RUN cd psctoolkit/amg4psblas && ls
 RUN cd psctoolkit/amg4psblas && ./configure \
                     --with-psblas=/usr/local/psctoolkit \
                     --prefix=/usr/local/psctoolkit \
