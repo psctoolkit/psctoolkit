@@ -6,11 +6,11 @@
 	url = https://github.com/sfilippone/psblas3-ext
 [submodule "sundials"]
 	path = sundials
-	url = git@github.com:Cirdans-Home/sundials.git
+	url = https://github.com/Cirdans-Home/sundials.git
 	branch = psblasinterface
 [submodule "spgpu"]
 	path = spgpu
 	url = https://github.com/davidebarbieri/spgpu
 [submodule "amg4psblas"]
 	path = amg4psblas
-	url = git@github.com:sfilippone/amg4psblas.git
+	url = https://github.com/sfilippone/amg4psblas.git
