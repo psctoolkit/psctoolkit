@@ -8,9 +8,9 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y gcc-10 make cmake mpich git libatlas3-base \
             libatlas-base-dev metis liblapack3 liblapack-dev \
-            libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps-5.2.1 \
+            libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps-5.4 \
             libsuperlu5 libsuperlu-dev \
-            libsuperlu-dist6 libsuperlu-dist-dev
+            libsuperlu-dist7 libsuperlu-dist-dev
 
 # First we need to install Metis with 8bytes integer support
 ADD http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz /home/work
