@@ -1,9 +1,11 @@
 [submodule "psblas3"]
 	path = psblas3
 	url = https://github.com/sfilippone/psblas3
+	branch = maint-3.8.0
 [submodule "psblas3-ext"]
 	path = psblas3-ext
 	url = https://github.com/sfilippone/psblas3-ext
+	branch = maint-1.3
 [submodule "sundials"]
 	path = sundials
 	url = https://github.com/Cirdans-Home/sundials.git
@@ -14,3 +16,4 @@
 [submodule "amg4psblas"]
 	path = amg4psblas
 	url = https://github.com/sfilippone/amg4psblas.git
+	branch = maint-1.1.0
