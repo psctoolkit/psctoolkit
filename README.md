@@ -10,7 +10,7 @@ All the relevant information can be found at: [psctoolkit.github.io](https://psc
 
 ## How to get
 
-To clone the **development version** do 
+To clone the **the repository in the maintenance versions** do 
 ```bash
 git clone https://github.com/psctoolkit/psctoolkit.git
 ```
