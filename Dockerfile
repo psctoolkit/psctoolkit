@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get upgrade -y && \
     apt-get install -y gcc-10 make cmake mpich git libatlas3-base \
             libatlas-base-dev metis liblapack3 liblapack-dev \
-            libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps-5.4 \
+            libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps* \
             libsuperlu5 libsuperlu-dev \
             libsuperlu-dist7 libsuperlu-dist-dev \
             nvidia-cuda-toolkit
@@ -39,7 +39,7 @@ RUN ./configure \
 	--with-metisdir=/usr/local/ \
 	--with-amddir=/usr/lib/x86_64-linux-gnu/ \
 	--with-amdincdir=/usr/include/suitesparse/ 
-RUN make 
+RUN make
 RUN make install
 
 # Install SPGPU
@@ -60,7 +60,7 @@ RUN ./configure \
 	--prefix=/usr/local/psctoolkit \
 	--with-spgpu=/usr/locall/psctoolkit \
 	--with-cudacc=50,60,70
-RUN make 
+RUN make
 RUN make install
 
 # Install AMG4PSBLAS
@@ -79,5 +79,5 @@ RUN ./configure \
 	--with-umfpackdir=/usr/lib/x86_64-linux-gnu \
 	--with-umfpacklibdir=/usr/lib/x86_64-linux-gnu \
 	--with-umfpackincdir=/usr/include/suitesparse/ 
-RUN make 
+RUN make
 RUN make install
