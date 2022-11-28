@@ -53,4 +53,4 @@ Each of the libraries contains its own installation instructions. See informatio
 
 ## How to cite
 
-If you use these libraries in the production of scientific articles visit the [publications page](https://psctoolkit.github.io/publication/) on the site to use the correct references. Also [let us know](mailto:eocoe@na.iac.cnr.it) what you used them for and we will be happy to add you to the list of field applications. 
+If you use these libraries in the production of scientific articles visit the [publications page](https://psctoolkit.github.io/publication/) on the site to use the correct references. Also [let us know](mailto:psctoolkit@na.iac.cnr.it) what you used them for and we will be happy to add you to the list of field applications. 
