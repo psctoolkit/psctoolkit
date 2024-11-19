@@ -12,19 +12,20 @@ All the relevant information can be found at: [psctoolkit.github.io](https://psc
 
 To clone the **the repository in the maintenance versions** do 
 ```bash
-git clone https://github.com/psctoolkit/psctoolkit.git
+git clone --recurse-submodules https://github.com/psctoolkit/psctoolkit.git
 ```
 or if you want to use ssh:
 ```bash
-git clone git@github.com:psctoolkit/psctoolkit.git
+git clone --recurse-submodules git@github.com:psctoolkit/psctoolkit.git
 ```
 To keep the development version updated with the changes in the individual repositories, use the command: 
 ```bash
-git submodule update --init --recursive
+git submodule update --recursive --remote
 ```
 or to execute ```git pull``` inside each of the folders to synchronize to the latest version. 
 
-**Warning:** the various submodules point to mutually compatible versions of the library. Branch switching and pull operations could damage compatibility, especially moving into development branches. The easiest way is to download the latest **stable release**. This contains all versions of the packages that can be compiled together. 
+>[!warning]
+> the various submodules point to mutually compatible versions of the library. Branch switching and pull operations could damage compatibility, especially moving into development branches. The easiest way is to download the latest **stable release**. This contains all versions of the packages that can be compiled together. 
 
 ### Docker
 
