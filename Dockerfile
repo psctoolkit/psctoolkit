@@ -6,13 +6,22 @@ WORKDIR /home/work
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
     apt-get upgrade -y && \
-    apt-get install -y gcc-12 make cmake mpich git libopenblas-dev \
+    apt-get install -y make cmake mpich git libopenblas-dev \
             libopenblas0 metis \
             libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps* \
             libsuperlu6 libsuperlu-dev \
             libsuperlu-dist8 libsuperlu-dist-dev \
-            nvidia-cuda-toolkit libmetis5 libmetis-dev 
+            libmetis5 libmetis-dev
 
+# Install CUDA
+RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
+RUN dpkg -i cuda-keyring_1.1-1_all.deb
+RUN apt-get update
+RUN apt-get -y install cuda
+RUN export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
+RUN export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64\
+                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+                        
 WORKDIR /home/work
 RUN git clone https://github.com/psctoolkit/psctoolkit.git 
 WORKDIR /home/work/psctoolkit 
