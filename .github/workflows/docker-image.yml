@@ -7,7 +7,7 @@ on:
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: nvidia/cuda:12.6.1-base-ubuntu24.04
     steps:
       - name: Checkout
         uses: actions/checkout@v2
