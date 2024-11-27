@@ -14,6 +14,8 @@ RUN apt-get update && \
             libmetis5 libmetis-dev wget
 
 # Install CUDA
+RUN apt install nvidia-driver-535
+RUN reboot now
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
 RUN dpkg -i cuda-keyring_1.1-1_all.deb
 RUN apt-get update
