@@ -13,6 +13,9 @@ RUN apt-get update && \
             libsuperlu6 libsuperlu-dev \
             libsuperlu-dist8 libsuperlu-dist-dev \
             libmetis5 libmetis-dev 
+
+# Output nvcc version
+RUN nvcc --version
                         
 WORKDIR /home/work
 RUN git clone https://github.com/psctoolkit/psctoolkit.git 
