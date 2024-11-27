@@ -1,4 +1,5 @@
-FROM ubuntu:latest
+# docker pull nvidia/cuda:12.6.1-base-ubuntu24.04
+FROM nvidia/cuda:12.6.1-base-ubuntu24.04
 
 WORKDIR /home/work
 
@@ -11,18 +12,7 @@ RUN apt-get update && \
             libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps* \
             libsuperlu6 libsuperlu-dev \
             libsuperlu-dist8 libsuperlu-dist-dev \
-            libmetis5 libmetis-dev wget
-
-# Install CUDA
-RUN apt install nvidia-driver-535
-RUN reboot now
-RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
-RUN dpkg -i cuda-keyring_1.1-1_all.deb
-RUN apt-get update
-RUN apt-get -y install cuda
-RUN export PATH=/usr/local/cuda/bin${PATH:+:${PATH}}
-RUN export LD_LIBRARY_PATH=/usr/local/cuda-12.2/lib64\
-                         ${LD_LIBRARY_PATH:+:${LD_LIBRARY_PATH}}
+            libmetis5 libmetis-dev 
                         
 WORKDIR /home/work
 RUN git clone https://github.com/psctoolkit/psctoolkit.git 
