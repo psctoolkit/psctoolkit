@@ -12,7 +12,7 @@ RUN apt-get update && \
             libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps* \
             libsuperlu6 libsuperlu-dev \
             libsuperlu-dist8 libsuperlu-dist-dev \
-            libmetis5 libmetis-dev 
+            libmetis5 libmetis-dev nvidia-cuda-toolkit 
 
 # Output nvcc version
 RUN nvcc --version
