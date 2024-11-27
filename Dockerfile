@@ -11,7 +11,7 @@ RUN apt-get update && \
             libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps* \
             libsuperlu6 libsuperlu-dev \
             libsuperlu-dist8 libsuperlu-dist-dev \
-            libmetis5 libmetis-dev
+            libmetis5 libmetis-dev wget
 
 # Install CUDA
 RUN wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
