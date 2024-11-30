@@ -1,21 +1,16 @@
-# docker pull nvidia/cuda:12.6.1-base-ubuntu24.04
-FROM nvidia/cuda:12.6.1-base-ubuntu24.04
+FROM nvidia/cuda:12.6.2-base-ubuntu22.04
 
 WORKDIR /home/work
 
 # Install the needed packages
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    apt-get upgrade -y && \
-    apt-get install -y make cmake mpich git libopenblas-dev \
-            libopenblas0 metis \
-            libsuitesparse-dev libparmetis4.0 libparmetis-dev libmumps* \
-            libsuperlu6 libsuperlu-dev \
-            libsuperlu-dist8 libsuperlu-dist-dev \
-            libmetis5 libmetis-dev nvidia-cuda-toolkit 
-
-# Output nvcc version
-RUN nvcc --version
+    apt-get install -y git cmake g++ gfortran nvidia-cuda-toolkit \
+    libopenblas-base libopenblas-dev openmpi-bin openmpi-common \
+    libopenmpi-dev libsuitesparse-dev metis libmetis-dev \
+    libsuperlu5 libsuperlu-dev \
+    libsuperlu-dist7 libsuperlu-dist-dev \
+    libmumps-5.4 libmumps-dev libmumps-headers-dev
                         
 WORKDIR /home/work
 RUN git clone https://github.com/psctoolkit/psctoolkit.git 
@@ -25,23 +20,18 @@ RUN git pull
 
 # Install PSBLAS from the repository
 WORKDIR /home/work/psctoolkit/psblas3
-RUN ./configure \
+RUN ./configure --with-amdlibdir=/usr/lib/x86_64-linux-gnu/ \
+	--with-amdincdir=/usr/include/suitesparse/ \
+	--with-metislibdir=/usr/lib/x86_64-linux-gnu/ \
 	--with-ipk=4 --with-lpk=4 \
-	--prefix=/usr/local/psctoolkit \
-	--with-metisdir=/usr/lib/x86_64-linux-gnu/ \
-	--with-ccopt="-O3 -fPIC -ldl" \
-	--with-fcopt="-O3 -frecursive -fPIC -ldl" \
-	--with-metisincfile=/usr/local/include/metis.h \
-	--with-metisdir=/usr/local/ \
-	--with-amddir=/usr/lib/x86_64-linux-gnu/ \
-	--with-amdincdir=/usr/include/suitesparse 
-RUN make
+	--prefix=/usr/local/psctoolkit
+RUN make 
 RUN make install
 
 # Install SPGPU
 WORKDIR /home/work/psctoolkit/spgpu/build/cmake
 RUN sh configure.sh
-RUN make
+RUN make -j6
 WORKDIR /home/work/psctoolkit/spgpu
 RUN cp lib/* /usr/local/psctoolkit/lib/
 RUN cp src/core/*.h /usr/local/psctoolkit/include/
@@ -51,12 +41,13 @@ WORKDIR /home/work/psctoolkit/psblas3-ext
 RUN mkdir include
 RUN mkdir modules
 RUN mkdir lib
+RUN touch compile
 RUN ./configure \
 	--with-psblas=/usr/local/psctoolkit \
 	--prefix=/usr/local/psctoolkit \
 	--with-spgpu=/usr/locall/psctoolkit \
 	--with-cudacc=50,60,70
-RUN make
+RUN make 
 RUN make install
 
 # Install AMG4PSBLAS
@@ -64,8 +55,6 @@ WORKDIR /home/work/psctoolkit/amg4psblas
 RUN ./configure \
 	--with-psblas=/usr/local/psctoolkit \
 	--prefix=/usr/local/psctoolkit \
-	--with-libs="-L/usr/lib/x86_64-linux-gnu -Wl,--no-as-needed -lpthread -lm -ldl -lopenblas -fPIC" \
-	--with-extra-libs="-L/usr/lib/x86_64-linux-gnu -lm -lparmetis -lmetis -fPIC -ldl" \
 	--with-superlulibdir=/usr/lib/x86_64-linux-gnu \
 	--with-superluincdir=/usr/include/superlu/ \
 	--with-superludistlibdir=/usr/lib/x86_64-linux-gnu \
@@ -75,5 +64,5 @@ RUN ./configure \
 	--with-umfpackdir=/usr/lib/x86_64-linux-gnu \
 	--with-umfpacklibdir=/usr/lib/x86_64-linux-gnu \
 	--with-umfpackincdir=/usr/include/suitesparse/ 
-RUN make
+RUN make 
 RUN make install
