@@ -28,5 +28,4 @@ jobs:
           context: .
           push: true
           tags: psctoolkit/psctoolkit:latest
-          cache-from: type=registry,ref=psctoolkit/psctoolkit:buildcache
-          cache-to: type=registry,ref=psctoolkit/psctoolkit:buildcache,mode=max
+          provenance: false
