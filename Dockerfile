@@ -5,12 +5,14 @@ WORKDIR /home/work
 # Install the needed packages
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && \
-    apt-get install -y git cmake g++ gfortran nvidia-cuda-toolkit \
-    libopenblas-dev openmpi-bin openmpi-common \
-    libopenmpi-dev libsuitesparse-dev metis libmetis-dev \
-    libsuperlu6 libsuperlu-dev \
-    libsuperlu-dist8 libsuperlu-dist-dev \
-    libmumps-5.6t64 libmumps-dev libmumps-headers-dev
+	apt-get install -y --no-install-recommends \
+	git cmake g++ gfortran \
+	libopenblas-dev openmpi-bin openmpi-common \
+	libopenmpi-dev libsuitesparse-dev metis libmetis-dev \
+	libsuperlu6 libsuperlu-dev \
+	libsuperlu-dist8 libsuperlu-dist-dev \
+	libmumps-5.6t64 libmumps-dev libmumps-headers-dev && \
+	rm -rf /var/lib/apt/lists/*
                         
 WORKDIR /home/work
 RUN git clone https://github.com/psctoolkit/psctoolkit.git 
