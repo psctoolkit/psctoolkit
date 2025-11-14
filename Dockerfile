@@ -28,7 +28,7 @@ RUN ./configure --with-amdlibdir=/usr/lib/x86_64-linux-gnu/ \
 	--with-ipk=4 --with-lpk=4 \
 	--prefix=/usr/local/psctoolkit \
 	--with-cudadir=/usr/local/cuda \
-	--with-cudacc=70,80,89,90 \
+	--with-cudacc=80,89,90 \
     --enable-cuda \
 	--enable-openmp 
 RUN make -j4
